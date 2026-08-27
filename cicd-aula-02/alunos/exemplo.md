@@ -1,4 +1,4 @@
-# Joao Heytor (exemplo)
+# Joao Heytor
 
 Trabalho com DevOps e infraestrutura, e criei este projeto para a aula.
 
