@@ -19,6 +19,12 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+# Publicamos a licao da aula 01, que vive na pasta cicd/.
+# Por isso os comandos (run) rodam de dentro dela.
+defaults:
+  run:
+    working-directory: cicd
+
 jobs:
 
   construir:
@@ -33,7 +39,7 @@ jobs:
       - name: Guardar o site pronto
         uses: actions/upload-pages-artifact@v3
         with:
-          path: _site
+          path: cicd/_site   # caminho relativo a raiz do repositorio
 
   publicar:
     name: 2 - Publicar (precisa de aprovacao humana)

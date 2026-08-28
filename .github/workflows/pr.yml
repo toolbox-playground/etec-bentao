@@ -13,14 +13,22 @@ permissions:
 
 jobs:
   verificar:
-    name: Verificar os arquivos
+    # Conferimos as DUAS licoes. Cada licao vive na sua pasta,
+    # com as suas proprias regras (scripts/) e o seu proprio conteudo.
+    name: Verificar ${{ matrix.licao }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        licao: [cicd, cicd-aula-02]
     steps:
       - name: Pegar o codigo do Pull Request
         uses: actions/checkout@v4
 
       - name: Rodar as regras do projeto
+        working-directory: ${{ matrix.licao }}
         run: python3 scripts/check.py
 
       - name: Construir o site (so pra ver se constroi)
+        working-directory: ${{ matrix.licao }}
         run: python3 scripts/build.py
